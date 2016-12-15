@@ -11,6 +11,8 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        Intent intent = new Intent(this, CidadeActivity.class);
+        startActivity(intent);
     }
 
     public void startProduto(View view){
