@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Ekonomi</string>
+
+    <string name="title_activity_full">Full</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="selecione_a_cidade">Selecione a cidade</string>
+    <string name="listar">Listar</string>
 </resources>

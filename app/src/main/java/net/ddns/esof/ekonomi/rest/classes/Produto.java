@@ -1,6 +1,8 @@
 package net.ddns.esof.ekonomi.rest.classes;
 
-public class Produto {
+import java.io.Serializable;
+
+public class Produto implements Serializable {
     private int id;
 
     private String nome;
@@ -64,7 +66,7 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto [nome=" + nome + ", medida=" + medida + "]";
+        return nome;
 
     }
 }

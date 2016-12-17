@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import net.ddns.esof.ekonomi.rest.classes.PrecoProd;
 import net.ddns.esof.ekonomi.rest.classes.Produto;
-import net.ddns.esof.ekonomi.rest.classes.UnMedida;
 
 import java.util.ArrayList;
 import java.util.List;

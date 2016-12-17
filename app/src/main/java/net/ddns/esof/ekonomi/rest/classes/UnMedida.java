@@ -1,6 +1,8 @@
 package net.ddns.esof.ekonomi.rest.classes;
 
-public class UnMedida {
+import java.io.Serializable;
+
+public class UnMedida implements Serializable{
 
     private String sigla;
 

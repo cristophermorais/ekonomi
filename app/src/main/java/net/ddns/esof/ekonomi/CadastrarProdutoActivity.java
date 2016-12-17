@@ -3,8 +3,6 @@ package net.ddns.esof.ekonomi;
 import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.IdRes;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,18 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-
 import net.ddns.esof.ekonomi.rest.RestClient;
-
-
-import static net.ddns.esof.ekonomi.R.id.btProduto;
-import static net.ddns.esof.ekonomi.R.id.editText;
-import static net.ddns.esof.ekonomi.R.id.editTextNome;
-import static net.ddns.esof.ekonomi.R.id.editTextPreco;
-import static net.ddns.esof.ekonomi.R.id.editUnMedida;
-import static net.ddns.esof.ekonomi.R.id.id;
 
 public class CadastrarProdutoActivity extends Activity{
 

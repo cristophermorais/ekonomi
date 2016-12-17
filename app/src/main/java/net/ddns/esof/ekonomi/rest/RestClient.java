@@ -1,17 +1,12 @@
 package net.ddns.esof.ekonomi.rest;
 
 import android.content.Context;
-import android.content.Intent;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.google.gson.Gson;
 
-import net.ddns.esof.ekonomi.rest.classes.Cidade;
-import net.ddns.esof.ekonomi.rest.classes.Produto;
-import net.ddns.esof.ekonomi.rest.classes.Supermercado;
 import net.ddns.esof.ekonomi.rest.volley.MyJSONArrayRequest;
 import net.ddns.esof.ekonomi.rest.volley.MyJSONObjectRequest;
 import net.ddns.esof.ekonomi.rest.volley.MyVolleyRequestQueue;
@@ -20,7 +15,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RestClient {
@@ -96,75 +90,22 @@ public class RestClient {
                                      int idCidade,
                                      Response.Listener<JSONArray> listener,
                                      Response.ErrorListener errorListener,
-                                     String REQUEST_TAG){
-        RequestQueue q = MyVolleyRequestQueue.getInstance(mContext).getRequestQueue();
-        String url = getAbsoluteUrl("/preco/listar/" + idCidade);
-        final MyJSONArrayRequest jsonRequest = new MyJSONArrayRequest(Request.Method.GET,
-                url, new JSONArray(), listener, errorListener);
-
-        JsonArrayRequest a;
-
-        jsonRequest.setTag(REQUEST_TAG);
-        q.add(jsonRequest);
-    }
-
-
-
-    public Produto convertJsonToProduto(JSONObject json) {
-        return gson.fromJson(json.toString(), Produto.class);
-    }
-
-    public List<Produto> convertJsonToListaProdutos(JSONArray array) throws JSONException {
-        ArrayList<Produto> lista = new ArrayList<>();
+                                     String REQUEST_TAG) throws JSONException {
 
         try {
-            for (int i = 0; i < array.length(); i++) {
-                JSONObject json = (JSONObject) array.get(i);
-                lista.add(convertJsonToProduto(json));
-            }
+            String string = gson.toJson(ids, List.class);
+            JSONArray array = new JSONArray(string);
+            RequestQueue q = MyVolleyRequestQueue.getInstance(mContext).getRequestQueue();
+            String url = getAbsoluteUrl("/preco/listar");
+            final MyJSONArrayRequest jsonRequest = new MyJSONArrayRequest(Request.Method.POST,
+                    url, array, listener, errorListener);
+
+            jsonRequest.setTag(REQUEST_TAG);
+            q.add(jsonRequest);
         } catch (JSONException e) {
             e.printStackTrace();
             throw e;
         }
-
-        return lista;
-    }
-
-    public Cidade convertJsonToCidade(JSONObject json) {
-        return gson.fromJson(json.toString(), Cidade.class);
-    }
-
-    public List<Cidade> convertJsonToListaCidades(JSONArray array) throws JSONException {
-        ArrayList<Cidade> lista = new ArrayList<>();
-
-        try{
-            for(int i = 0; i < array.length(); i++){
-                JSONObject json = (JSONObject) array.get(i);
-                lista.add(convertJsonToCidade(json));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-            throw e;
-        }
-
-        return lista;
-    }
-
-    public List<Supermercado> convertJsonToListaSupermercados(JSONArray array) throws JSONException {
-        ArrayList<Supermercado> lista = new ArrayList<>();
-
-        try{
-            for(int i = 0; i < array.length(); i++){
-                JSONObject json = (JSONObject) array.get(i);
-                Supermercado supermercado = gson.fromJson(json.toString(), Supermercado.class);
-                lista.add(supermercado);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-            throw e;
-        }
-
-        return lista;
     }
 
     public void cancelAll(String REQUEST_TAG) {

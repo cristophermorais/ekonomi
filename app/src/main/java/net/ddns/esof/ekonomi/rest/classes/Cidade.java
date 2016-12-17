@@ -1,6 +1,8 @@
 package net.ddns.esof.ekonomi.rest.classes;
 
-public class Cidade {
+import java.io.Serializable;
+
+public class Cidade implements Serializable {
 
     private int id;
 
@@ -65,7 +67,7 @@ public class Cidade {
 
     @Override
     public String toString() {
-        return "Cidade [nome=" + nome + ", estado=" + estado + "]";
+        return nome;
     }
 
 }

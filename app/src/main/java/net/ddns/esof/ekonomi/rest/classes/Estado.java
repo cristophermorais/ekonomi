@@ -1,6 +1,8 @@
 package net.ddns.esof.ekonomi.rest.classes;
 
-public class Estado {
+import java.io.Serializable;
+
+public class Estado implements Serializable{
 
     private String sigla;
 
