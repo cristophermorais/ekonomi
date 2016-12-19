@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.ddns.esof.ekonomi.rest.classes.Cidade;
 import net.ddns.esof.ekonomi.rest.classes.Produto;
@@ -16,7 +17,6 @@ import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
     Cidade cidade;
-    List<Produto> listaProdutos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +24,8 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         cidade = null;
-        listaProdutos = null;
 
         final ListView listView = (ListView) findViewById(R.id.listViewLista);
-        //ArrayAdapter<Produto> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_singlechoice, new ArrayList<Produto>());
-       // listView.setAdapter(arrayAdapter);
         ListaComprasAdapter listaComprasAdapter = new ListaComprasAdapter(this, new ArrayList<Produto>());
         listView.setAdapter(listaComprasAdapter);
 
@@ -64,6 +61,21 @@ public class TestActivity extends AppCompatActivity {
             default:
                 break;
         }
+    }
+
+    public void calcPrecos(View view){
+        ListView listView = (ListView) findViewById(R.id.listViewLista);
+        ArrayList<Produto> listaProdutos = ((ListaComprasAdapter)listView.getAdapter()).cloneProdutos();
+
+        if(listView.getAdapter().getCount() > 0){
+            Intent intent = new Intent(this, ResultadoActivity.class);
+            intent.putExtra("listaProdutos", listaProdutos);
+            intent.putExtra("idCidade", cidade.getId());
+            startActivity(intent);
+        }else{
+            Toast.makeText(this, "Lista de compras vazia!", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     public void startProduto(View view){

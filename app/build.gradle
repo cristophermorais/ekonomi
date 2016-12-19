@@ -38,4 +38,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.3.2'
     compile project(':volley')
+    compile 'com.google.android.gms:play-services-maps:9.8.0'
 }

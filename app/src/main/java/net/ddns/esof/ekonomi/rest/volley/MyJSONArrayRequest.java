@@ -27,7 +27,6 @@ public class MyJSONArrayRequest extends JsonArrayRequest {
 
     @Override
     public RetryPolicy getRetryPolicy() {
-        // here you can write a custom retry policy
         return super.getRetryPolicy();
     }
 }

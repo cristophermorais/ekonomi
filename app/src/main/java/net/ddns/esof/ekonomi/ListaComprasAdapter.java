@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 
 import net.ddns.esof.ekonomi.rest.classes.Produto;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -44,5 +45,9 @@ public class ListaComprasAdapter extends ArrayAdapter {
         if(p instanceof Produto && !produtos.contains(p)){
             super.add(p);
         }
+    }
+
+    public ArrayList<Produto> cloneProdutos(){
+        return (ArrayList<Produto>) produtos.clone();
     }
 }

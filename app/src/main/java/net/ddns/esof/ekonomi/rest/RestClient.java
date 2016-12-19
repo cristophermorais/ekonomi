@@ -94,11 +94,12 @@ public class RestClient {
 
         try {
             String string = gson.toJson(ids, List.class);
-            JSONArray array = new JSONArray(string);
+            JSONArray arrayIds = new JSONArray(string);
+
             RequestQueue q = MyVolleyRequestQueue.getInstance(mContext).getRequestQueue();
-            String url = getAbsoluteUrl("/preco/listar");
+            String url = getAbsoluteUrl("/preco/listar/" + idCidade);
             final MyJSONArrayRequest jsonRequest = new MyJSONArrayRequest(Request.Method.POST,
-                    url, array, listener, errorListener);
+                    url, arrayIds, listener, errorListener);
 
             jsonRequest.setTag(REQUEST_TAG);
             q.add(jsonRequest);

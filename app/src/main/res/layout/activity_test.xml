@@ -22,39 +22,6 @@
         android:layout_alignParentEnd="true"
         android:textAlignment="center" />
 
-    <ImageButton
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:srcCompat="@android:drawable/ic_delete"
-        android:id="@+id/calculateButton"
-        android:layout_marginRight="9dp"
-        android:layout_marginEnd="9dp"
-        android:layout_alignTop="@+id/addButton"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <ImageButton
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:id="@+id/addButton"
-        android:onClick="startProduto"
-        android:layout_marginRight="51dp"
-        android:layout_marginEnd="51dp"
-        android:layout_marginTop="16dp"
-        android:layout_below="@+id/cidadeView"
-        android:layout_alignRight="@+id/calculateButton"
-        android:layout_alignEnd="@+id/calculateButton" />
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/calculateButton"
-        android:id="@+id/listViewLista" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,5 +32,37 @@
         android:layout_below="@+id/textViewPesquisando"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listViewLista"
+        android:layout_toLeftOf="@+id/addButton"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_below="@+id/cidadeView" />
+
+    <ImageButton
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:srcCompat="@drawable/add"
+        android:id="@+id/addButton"
+        android:onClick="startProduto"
+        android:layout_below="@+id/cidadeView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@null" />
+
+    <ImageButton
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:srcCompat="@drawable/money"
+        android:layout_below="@+id/addButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="11dp"
+        android:id="@+id/imageButton"
+        android:background="@null"
+        android:onClick="calcPrecos" />
 
 </RelativeLayout>

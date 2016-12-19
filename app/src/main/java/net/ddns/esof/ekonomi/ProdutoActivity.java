@@ -3,11 +3,13 @@ package net.ddns.esof.ekonomi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -33,14 +35,8 @@ public class ProdutoActivity extends AppCompatActivity implements Response.Liste
         setContentView(R.layout.activity_produto);
 
         rest = RestClient.getInstance(this.getApplicationContext());
+        rest.getJsonListaProdutos(this, this, REQUEST_TAG);
 
-        Intent intent = getIntent();
-
-        if(intent.hasExtra("listaProdutos")){
-            populateListView((List<Produto>)intent.getSerializableExtra("listaProdutos"));
-        }else{
-            rest.getJsonListaProdutos(this, this, REQUEST_TAG);
-        }
     }
 
     public void onBackPressed() {
@@ -58,11 +54,7 @@ public class ProdutoActivity extends AppCompatActivity implements Response.Liste
     // metodo chamado quando ocorre erro no processamento da requisição
     @Override
     public void onErrorResponse(VolleyError error) {
-     /*   TextView textView = (TextView) findViewById(R.id.editText);
-        String e = error.toString();
-        textView.setText(e);
-
-        findViewById(R.id.inputId).requestFocus();*/
+        Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show();
     }
 
     // metodo chamado quando a requisição recebe uma resposta
@@ -83,30 +75,10 @@ public class ProdutoActivity extends AppCompatActivity implements Response.Liste
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
-
-/*
-        try {
-            if (response instanceof JSONObject) {
-                produto = JsonConverter.convertJsonToProduto((JSONObject) response);
-                TextView textView = ((TextView) findViewById(R.id.editText));
-                textView.setText(produto.toString());
-            } else if (response instanceof JSONArray) {
-
-                listaProdutos = JsonConverter.convertJsonToListaProdutos((JSONArray) response);
-                TextView textView = ((TextView) findViewById(R.id.editText));
-                textView.setText(listaProdutos.toString());
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        findViewById(R.id.inputId).requestFocus();*/
     }
 
     //metodo para enviar requisição
     public void getJsonProdutos(View view) {
-
         rest.getJsonListaProdutos(this, this, REQUEST_TAG);
     }
 
@@ -115,6 +87,9 @@ public class ProdutoActivity extends AppCompatActivity implements Response.Liste
         ArrayAdapter<Produto> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_singlechoice, listaProdutos);
         listView.setAdapter(arrayAdapter);
 
+        LayoutInflater layoutInflater = this.getLayoutInflater();
+        View headerView = layoutInflater.inflate(R.layout.header, listView, false);
+        listView.addHeaderView(headerView, null, false);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

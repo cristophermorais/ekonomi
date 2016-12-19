@@ -3,6 +3,7 @@ package net.ddns.esof.ekonomi.rest.volley;
 import com.google.gson.Gson;
 
 import net.ddns.esof.ekonomi.rest.classes.Cidade;
+import net.ddns.esof.ekonomi.rest.classes.PrecoProd;
 import net.ddns.esof.ekonomi.rest.classes.Produto;
 import net.ddns.esof.ekonomi.rest.classes.Supermercado;
 
@@ -71,6 +72,22 @@ public class JsonConverter {
                 lista.add(supermercado);
             }
         } catch (JSONException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        return lista;
+    }
+
+    public static List<PrecoProd> converJsonToListaPrecos(JSONArray array) throws JSONException {
+        ArrayList<PrecoProd> lista = new ArrayList<>();
+        try {
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject json = (JSONObject) array.get(i);
+                PrecoProd precoProd = gson.fromJson(json.toString(), PrecoProd.class);
+                lista.add(precoProd);
+            }
+        }catch (JSONException e){
             e.printStackTrace();
             throw e;
         }

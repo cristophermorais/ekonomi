@@ -7,7 +7,7 @@ public class PrecoProd {
 
     private Marca marca;
 
-    private Produto prod;
+    private Produto produto;
 
     private Supermercado superm;
 
@@ -15,17 +15,17 @@ public class PrecoProd {
 
     private float precoProd;
 
-    private Calendar dataInic;
+    private Double dataInc;
 
     private Usuario user;
 
-    public PrecoProd(Produto prod, Marca marca, Supermercado superm, float qtUn, float preco, Calendar dataInic, Usuario user) {
+    public PrecoProd(Produto produto, Marca marca, Supermercado superm, float qtUn, float preco, Double dataInic, Usuario user) {
         this.marca = marca;
-        this.prod = prod;
+        this.produto = produto;
         this.superm = superm;
         this.qtUnPad = qtUn;
         this.precoProd = preco;
-        this.dataInic = dataInic;
+        this.dataInc = dataInic;
         this.user = user;
     }
 
@@ -44,11 +44,11 @@ public class PrecoProd {
     }
 
     public Produto getProduto() {
-        return prod;
+        return produto;
     }
 
     public void setProduto(Produto produto) {
-        this.prod = produto;
+        this.produto = produto;
     }
 
     public Supermercado getSuperm() {
@@ -75,12 +75,12 @@ public class PrecoProd {
         this.precoProd = precoProd;
     }
 
-    public Calendar getDataInc() {
-        return dataInic;
+    public Double getDataInc() {
+        return dataInc;
     }
 
-    public void setDataInc(Calendar dataInic) {
-        this.dataInic = dataInic;
+    public void setDataInc(Double dataInc) {
+        this.dataInc = dataInc;
     }
 
     public Usuario getUser() {
@@ -96,7 +96,7 @@ public class PrecoProd {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((marca == null) ? 0 : marca.hashCode());
-        result = prime * result + ((prod == null) ? 0 : prod.hashCode());
+        result = prime * result + ((produto == null) ? 0 : produto.hashCode());
         result = prime * result + Float.floatToIntBits(qtUnPad);
         result = prime * result + ((superm == null) ? 0 : superm.hashCode());
         return result;
@@ -116,10 +116,10 @@ public class PrecoProd {
                 return false;
         } else if (!marca.equals(other.marca))
             return false;
-        if (prod == null) {
-            if (other.prod != null)
+        if (produto == null) {
+            if (other.produto != null)
                 return false;
-        } else if (!prod.equals(other.prod))
+        } else if (!produto.equals(other.produto))
             return false;
         if (Float.floatToIntBits(qtUnPad) != Float.floatToIntBits(other.qtUnPad))
             return false;
@@ -130,13 +130,4 @@ public class PrecoProd {
             return false;
         return true;
     }
-
-    @Override
-    public String toString() {
-        SimpleDateFormat f = new SimpleDateFormat("dd/MMMM/yyyy, HH:mm:ss");
-        return "PrecoProd [marca=" + marca + "\nprod=" + prod + "\nsuperm=" + superm + "\nqtUnPad=" + qtUnPad
-                + "\nprecoProd=" + precoProd + "\ndataInic=" + f.format(dataInic.getTime()) + "\nuser=" + user + "]";
-    }
-
-
 }

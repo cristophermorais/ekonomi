@@ -36,12 +36,9 @@ public class CidadeActivity extends AppCompatActivity implements Response.Listen
 
         rest = RestClient.getInstance(this.getApplicationContext());
 
-        array_spinner = new String[5];
+        array_spinner = new String[2];
         array_spinner[0] = "MG";
         array_spinner[1] = "SP";
-        array_spinner[2] = "RJ";
-        array_spinner[3] = "PR";
-        array_spinner[4] = "GO";
         Spinner s = (Spinner) findViewById(R.id.cbEstados);
         ArrayAdapter adapter = new ArrayAdapter(this,
                 android.R.layout.simple_spinner_item, array_spinner);
