@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import net.ddns.esof.ekonomi.R;
 import net.ddns.esof.ekonomi.rest.model.PrecoProd;
-import net.ddns.esof.ekonomi.rest.model.PrecoSuperm;
 
 import java.util.ArrayList;
 
