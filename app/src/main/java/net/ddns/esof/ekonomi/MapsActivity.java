@@ -9,6 +9,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import net.ddns.esof.ekonomi.rest.model.Supermercado;
@@ -47,7 +48,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng coords = new LatLng(supermercado.getLatitude(), supermercado.getLongitude());
-        mMap.addMarker(new MarkerOptions().position(coords).title(supermercado.getNome()));
+        Marker marker = mMap.addMarker(new MarkerOptions().position(coords).title(supermercado.getNome()));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coords, 18));
+
+        marker.showInfoWindow();
     }
 }
