@@ -1,9 +1,10 @@
-package net.ddns.esof.ekonomi.rest.classes;
+package net.ddns.esof.ekonomi.rest.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import com.google.gson.internal.Streams;
 
-public class PrecoProd {
+import java.io.Serializable;
+
+public class PrecoProd implements Serializable {
 
     private Marca marca;
 
@@ -89,6 +90,38 @@ public class PrecoProd {
 
     public void setUser(Usuario user) {
         this.user = user;
+    }
+
+    public String getDescricao(){
+        StringBuilder sb = new StringBuilder();
+        UnMedida medida = produto.getMedida();
+
+        sb.append(produto.toString() + " " + marca.getNome() + " ");
+
+
+        switch (medida.getSigla()){
+            case "ml":
+                if(qtUnPad >= 1000){
+                    sb.append((qtUnPad / 1000) + " L");
+                }else{
+                    sb.append(qtUnPad  + " " + medida.getSigla());
+                }
+                break;
+
+            case "g":
+                if(qtUnPad >= 1000){
+                    sb.append((qtUnPad / 1000) + " Kg");
+                }else{
+                    sb.append(qtUnPad  + " " + medida.getSigla());
+                }
+                break;
+
+            default:
+                sb.append(qtUnPad + " "  + medida.getSigla());
+                break;
+            }
+
+        return sb.toString();
     }
 
     @Override

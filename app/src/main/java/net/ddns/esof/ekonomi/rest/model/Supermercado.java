@@ -1,10 +1,10 @@
-package net.ddns.esof.ekonomi.rest.classes;
+package net.ddns.esof.ekonomi.rest.model;
 
-public class Usuario {
+import java.io.Serializable;
 
-    private String user;
+public class Supermercado implements Serializable {
 
-    private String password;
+    private int id;
 
     private String nome;
 
@@ -14,43 +14,38 @@ public class Usuario {
 
     private String bairro;
 
-    private String compl;
-
     private Cidade cidade;
 
     private int codPostal;
 
+    private String compl;
 
-    public Usuario() {
-        super();
-    }
+    private double latitude;
+    private double longitude;
 
-    public Usuario(String user, String nome, String password, Cidade cidade, String bairro, String compl, String rua, int numero, int codPostal) {
-        this.user = user;
+    public Supermercado(String nome, Cidade cidade, String bairro, String rua, int numero, int codPostal, String compl, double latitude, double longitude) {
         this.nome = nome;
-        this.password = password;
         this.cidade = cidade;
         this.bairro = bairro;
         this.rua = rua;
-        this.compl = compl;
         this.numero = numero;
         this.codPostal = codPostal;
+        this.compl = compl;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
-    public String getUser() {
-        return user;
+    public Supermercado() {
+        super();
     }
 
-    public void setUser(String user) {
-        this.user = user;
+
+    public int getId() {
+        return id;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -85,20 +80,20 @@ public class Usuario {
         this.bairro = bairro;
     }
 
-    public String getCompl() {
-        return compl;
-    }
-
-    public void setCompl(String compl) {
-        this.compl = compl;
-    }
-
     public Cidade getCidade() {
-        return cidade;
+        return this.cidade;
     }
 
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
+    }
+
+    public String getCompl() {
+        return this.compl;
+    }
+
+    public void setComp(String compl) {
+        this.compl = compl;
     }
 
     public int getCodPostal() {
@@ -109,12 +104,27 @@ public class Usuario {
         this.codPostal = codPostal;
     }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((user == null) ? 0 : user.hashCode());
+        result = prime * result + id;
         return result;
     }
 
@@ -126,19 +136,16 @@ public class Usuario {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Usuario other = (Usuario) obj;
-        if (user == null) {
-            if (other.user != null)
-                return false;
-        } else if (!user.equals(other.user))
+        Supermercado other = (Supermercado) obj;
+        if (id != other.id)
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Usuario [user=" + user + ", password=" + password + ", nome=" + nome + ", rua=" + rua + ", numero="
-                + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", codPostal=" + codPostal + "]";
+        return "Supermercado [nome=" + nome + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade="
+                + cidade + ", codPostal=" + codPostal + "]";
     }
 
 

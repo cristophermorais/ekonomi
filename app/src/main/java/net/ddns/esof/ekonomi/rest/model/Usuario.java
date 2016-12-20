@@ -1,8 +1,12 @@
-package net.ddns.esof.ekonomi.rest.classes;
+package net.ddns.esof.ekonomi.rest.model;
 
-public class Supermercado {
+import java.io.Serializable;
 
-    private int id;
+public class Usuario implements Serializable{
+
+    private String user;
+
+    private String password;
 
     private String nome;
 
@@ -12,38 +16,43 @@ public class Supermercado {
 
     private String bairro;
 
+    private String compl;
+
     private Cidade cidade;
 
     private int codPostal;
 
-    private String compl;
 
-    private double latitude;
-    private double longitude;
-
-    public Supermercado(String nome, Cidade cidade, String bairro, String rua, int numero, int codPostal, String compl, double latitude, double longitude) {
-        this.nome = nome;
-        this.cidade = cidade;
-        this.bairro = bairro;
-        this.rua = rua;
-        this.numero = numero;
-        this.codPostal = codPostal;
-        this.compl = compl;
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
-
-    public Supermercado() {
+    public Usuario() {
         super();
     }
 
-
-    public int getId() {
-        return id;
+    public Usuario(String user, String nome, String password, Cidade cidade, String bairro, String compl, String rua, int numero, int codPostal) {
+        this.user = user;
+        this.nome = nome;
+        this.password = password;
+        this.cidade = cidade;
+        this.bairro = bairro;
+        this.rua = rua;
+        this.compl = compl;
+        this.numero = numero;
+        this.codPostal = codPostal;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNome() {
@@ -78,20 +87,20 @@ public class Supermercado {
         this.bairro = bairro;
     }
 
+    public String getCompl() {
+        return compl;
+    }
+
+    public void setCompl(String compl) {
+        this.compl = compl;
+    }
+
     public Cidade getCidade() {
-        return this.cidade;
+        return cidade;
     }
 
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
-    }
-
-    public String getCompl() {
-        return this.compl;
-    }
-
-    public void setComp(String compl) {
-        this.compl = compl;
     }
 
     public int getCodPostal() {
@@ -102,27 +111,12 @@ public class Supermercado {
         this.codPostal = codPostal;
     }
 
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id;
+        result = prime * result + ((user == null) ? 0 : user.hashCode());
         return result;
     }
 
@@ -134,16 +128,19 @@ public class Supermercado {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Supermercado other = (Supermercado) obj;
-        if (id != other.id)
+        Usuario other = (Usuario) obj;
+        if (user == null) {
+            if (other.user != null)
+                return false;
+        } else if (!user.equals(other.user))
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Supermercado [nome=" + nome + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade="
-                + cidade + ", codPostal=" + codPostal + "]";
+        return "Usuario [user=" + user + ", password=" + password + ", nome=" + nome + ", rua=" + rua + ", numero="
+                + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", codPostal=" + codPostal + "]";
     }
 
 

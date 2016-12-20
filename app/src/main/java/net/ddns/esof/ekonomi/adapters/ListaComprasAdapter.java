@@ -1,14 +1,10 @@
-package net.ddns.esof.ekonomi;
+package net.ddns.esof.ekonomi.adapters;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 
-import net.ddns.esof.ekonomi.rest.classes.Produto;
+import net.ddns.esof.ekonomi.rest.model.Produto;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**

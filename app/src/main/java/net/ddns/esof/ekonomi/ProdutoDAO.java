@@ -6,8 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import net.ddns.esof.ekonomi.rest.classes.PrecoProd;
-import net.ddns.esof.ekonomi.rest.classes.Produto;
+import net.ddns.esof.ekonomi.rest.model.PrecoProd;
+import net.ddns.esof.ekonomi.rest.model.Produto;
 
 import java.util.ArrayList;
 import java.util.List;

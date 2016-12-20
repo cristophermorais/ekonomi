@@ -1,4 +1,4 @@
-package net.ddns.esof.ekonomi.rest.classes;
+package net.ddns.esof.ekonomi.rest.model;
 
 import java.io.Serializable;
 

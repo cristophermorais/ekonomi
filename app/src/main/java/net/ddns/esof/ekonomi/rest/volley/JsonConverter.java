@@ -2,10 +2,10 @@ package net.ddns.esof.ekonomi.rest.volley;
 
 import com.google.gson.Gson;
 
-import net.ddns.esof.ekonomi.rest.classes.Cidade;
-import net.ddns.esof.ekonomi.rest.classes.PrecoProd;
-import net.ddns.esof.ekonomi.rest.classes.Produto;
-import net.ddns.esof.ekonomi.rest.classes.Supermercado;
+import net.ddns.esof.ekonomi.rest.model.Cidade;
+import net.ddns.esof.ekonomi.rest.model.PrecoProd;
+import net.ddns.esof.ekonomi.rest.model.Produto;
+import net.ddns.esof.ekonomi.rest.model.Supermercado;
 
 import org.json.JSONArray;
 import org.json.JSONException;

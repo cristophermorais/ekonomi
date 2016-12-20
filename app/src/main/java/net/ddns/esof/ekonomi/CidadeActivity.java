@@ -8,19 +8,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import net.ddns.esof.ekonomi.rest.RestClient;
-import net.ddns.esof.ekonomi.rest.classes.Cidade;
+import net.ddns.esof.ekonomi.rest.model.Cidade;
 import net.ddns.esof.ekonomi.rest.volley.JsonConverter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 

@@ -9,11 +9,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import net.ddns.esof.ekonomi.rest.classes.Cidade;
-import net.ddns.esof.ekonomi.rest.classes.Produto;
+import net.ddns.esof.ekonomi.adapters.ListaComprasAdapter;
+import net.ddns.esof.ekonomi.rest.model.Cidade;
+import net.ddns.esof.ekonomi.rest.model.Produto;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
     Cidade cidade;

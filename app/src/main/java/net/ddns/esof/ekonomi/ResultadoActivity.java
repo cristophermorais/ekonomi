@@ -1,30 +1,30 @@
 package net.ddns.esof.ekonomi;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
+import net.ddns.esof.ekonomi.adapters.SupermAdapter;
 import net.ddns.esof.ekonomi.rest.RestClient;
-import net.ddns.esof.ekonomi.rest.classes.PrecoProd;
-import net.ddns.esof.ekonomi.rest.classes.Produto;
-import net.ddns.esof.ekonomi.rest.classes.Supermercado;
+import net.ddns.esof.ekonomi.rest.model.Cidade;
+import net.ddns.esof.ekonomi.rest.model.PrecoProd;
+import net.ddns.esof.ekonomi.rest.model.PrecoSuperm;
+import net.ddns.esof.ekonomi.rest.model.Produto;
+import net.ddns.esof.ekonomi.rest.model.Supermercado;
 import net.ddns.esof.ekonomi.rest.volley.JsonConverter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -140,52 +140,26 @@ public class ResultadoActivity extends AppCompatActivity implements Response.Lis
 
         SupermAdapter supermAdapter = new SupermAdapter(this, precoSuperms);
 
-        ListView listView = (ListView) findViewById(R.id.listViewSuperm);
+        final ListView listView = (ListView) findViewById(R.id.listViewSuperm);
         listView.setAdapter(supermAdapter);
 
-    }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                PrecoSuperm selected = (PrecoSuperm) listView.getItemAtPosition(position);
 
-    public class PrecoSuperm{
-        private double preco;
-        private Supermercado supermercado;
+                Intent intent = new Intent(ResultadoActivity.this, PrecosActivity.class);
 
-        public PrecoSuperm(Supermercado supermercado, Double preco){
-            this.preco = preco;
-            this.supermercado = supermercado;
-        }
+                ArrayList<PrecoProd> lista = new ArrayList<>();
+                HashMap<Produto, PrecoProd> hashMap = produtosEscolhidos.get(selected.getSupermercado());
 
-        public double getPreco(){
-            return preco;
-        }
+                for(PrecoProd pp : hashMap.values()){
+                    lista.add(pp);
+                }
 
-        public Supermercado getSupermercado(){
-            return supermercado;
-        }
-    }
-
-    public class SupermAdapter extends ArrayAdapter<PrecoSuperm> {
-        private Context context;
-        private ArrayList<PrecoSuperm> lista;
-
-        public SupermAdapter(Context context, ArrayList<PrecoSuperm> lista){
-            super(context, android.R.layout.simple_list_item_1, lista);
-            this.context = context;
-            this.lista = lista;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent){
-            PrecoSuperm precoSuperm = this.lista.get(position);
-
-            convertView = LayoutInflater.from(this.context).inflate(R.layout.resultado_supermercados, null);
-
-            TextView textView = (TextView) convertView.findViewById(R.id.superm);
-            textView.setText(precoSuperm.getSupermercado().getNome());
-
-            TextView textView1 = (TextView) convertView.findViewById(R.id.valor);
-            textView1.setText(String.format("%.2f", precoSuperm.getPreco()));
-
-            return convertView;
-        }
+                intent.putExtra("lista", lista);
+                startActivity(intent);
+            }
+        });
     }
 }

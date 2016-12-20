@@ -1,20 +1,21 @@
-package net.ddns.esof.ekonomi.rest.classes;
+package net.ddns.esof.ekonomi.rest.model;
 
 import java.io.Serializable;
 
-public class Produto implements Serializable {
+public class Cidade implements Serializable {
+
     private int id;
 
     private String nome;
 
-    private UnMedida medida;
+    private Estado estado;
 
-    public Produto(String nome, UnMedida medida) {
+    public Cidade(String nome, Estado estado) {
         this.nome = nome;
-        this.medida = medida;
+        this.estado = estado;
     }
 
-    public Produto() {
+    public Cidade() {
         super();
     }
 
@@ -34,12 +35,12 @@ public class Produto implements Serializable {
         this.nome = nome;
     }
 
-    public UnMedida getMedida() {
-        return medida;
+    public Estado getEstado() {
+        return estado;
     }
 
-    public void setMedida(UnMedida medida) {
-        this.medida = medida;
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
     @Override
@@ -58,7 +59,7 @@ public class Produto implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Produto other = (Produto) obj;
+        Cidade other = (Cidade) obj;
         if (id != other.id)
             return false;
         return true;
@@ -67,6 +68,6 @@ public class Produto implements Serializable {
     @Override
     public String toString() {
         return nome;
-
     }
+
 }
